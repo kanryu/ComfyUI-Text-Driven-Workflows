@@ -1,2 +1,124 @@
 # ComfyUI-Text-Driven-Workflows
-A smart ComfyUI extension that simplifies text-driven workflows. Systematically organize, aggregate, and switch prompts or character settings with a single click, and batch process multiple staging plans simultaneously.
+
+A smart, modular ComfyUI extension designed to streamline and supercharge text-driven workflows. This extension enables you to systematically organize, aggregate, and switch massive libraries of prompt formulas or character configurations with a single click, allowing you to batch-process multiple staging and direction plans simultaneously without cluttering your workspace.
+
+By decoupling the "Character Core" from the "Scene/Staging Direction", you can build an agile, studio-grade prompt generation pipeline natively within ComfyUI V3.
+
+---
+
+## Key Features
+
+* **Complete Prompt Modularization:** Separate your structural staging (lighting, camera angles, environment) from character prompts and swap them dynamically.
+* **Native ComfyUI V3 Engine Support:** Built from the ground up using the latest ComfyUI V3 declarative API (`comfy_api.latest.io`), utilizing native features like safe dynamic `Autogrow` inputs.
+* **Smart Batch Processing:** Extract, sequence, and loop string arrays natively to feed batch image generation queues perfectly.
+* **Fault-Tolerant Execution:** Handles optional disconnected pins and extreme calculation bounds gracefully without throwing runtime workflow crashes.
+
+---
+
+## Included Nodes
+
+### 1. Single Prompt (Text-Driven)
+
+Manages a single prompt fragment with precision multiplier weighting and master active status control.
+
+* **Inputs:**
+* `text` (String, Multiline): The primary prompt fragment.
+* `optional_text_in` (String, Force Input, Optional): An upstream text fragment to merge.
+* `multiplier` (Float, Default: `1.0`, Range: `0.0` - `10.0`): Weight adjustment factor.
+* `active` (Boolean, Default: `True`): Master bypass switch. If `False`, outputs an empty string instantly.
+
+
+* **Behavior:** Automatically combines `text` and `optional_text_in` with correct spacing. If the multiplier is not `1.0`, it cleanly wraps the final text into standard attention weight syntax: `(combined_text:multiplier)`. Built to handle unlinked optional pins flawlessly.
+
+### 2. Join Strings (Text-Driven)
+
+Concatenates multiple string inputs into a single text block using a custom defined delimiter.
+
+* **Inputs:**
+* `delimiter` (String, Default: `""`): The string used to separate the text fragments (e.g., `, ` or `\n`).
+* `string_inputs` (Autogrow Input): Dynamically expanding input slots.
+
+
+* **Behavior:** Fully compliant with ComfyUI V3's native 0-indexed Autogrow behavior (`string0`, `string1`, etc.). It extracts the index markers via regular expressions, sorts them numerically to maintain strict structural ordering, and joins them into a unified prompt block.
+
+### 3. Prompt Line (Text-Driven)
+
+Extracts specific lines from a massive multi-line text block to output as a structured string list, specialized for advanced batch processing loops.
+
+* **Visual Identifiers:** Distinctive dark green design (`color: #225522`, `bgcolor: #33aa33`).
+* **Inputs:**
+* `prompt` (String, Multiline): The source asset block containing your lines/prompts.
+* `start_index` (Int, Default: `0`): The line index to begin extraction.
+* `max_rows` (Int, Default: `1000`): Maximum lines to extract.
+* `remove_empty_lines` (Boolean, Default: `True`): Automatically cleans up whitespace and dead lines.
+* `loops` (Boolean, Default: `False`): Wraparound toggle. If `True`, when the requested row count exceeds available lines, it loops back to index `0` rather than stopping.
+
+
+
+### 4. Text Line Selector & Resolution Selector
+
+Studio-grade switches designed to store massive direction plans/resolutions externally.
+
+* Allows you to record dozens of rich staging configurations and recall them instantly via clean drop-down selectors.
+* Seamlessly pipes chosen resolutions or scenario prompts into downstream generator nodes, completely removing the need to type out repetitive structures manually.
+
+### 5. Math (Int) (Text-Driven)
+
+An advanced integer arithmetic core designed to calculate loops, steps, dimensions, and indexing logic safely.
+
+* **Inputs:**
+* `a` / `b` (Int, Range: `-999,999,999` to `999,999,999`): Supports massive negative and positive integer ranges.
+* `operation` (Combo Select): `add`, `subtract`, `multiply`, `divide`, `modulo`, `power`, `shift`.
+
+
+* **Advanced Logic:**
+* `divide` / `modulo`: Allows natural zero-division runtime exceptions to propagate upstream safely.
+* `power`: Implements safety range-guards to prevent system-freezing overflow.
+* `shift` (Smart Bit-Shift): Intelligently reads the sign of `b`. Performs a standard Left Shift (`a << b`) if `b >= 0`, and automatically switches to a Right Shift (`a >> abs(b)`) if `b < 0` (capped safely at 31 bits).
+
+
+
+---
+
+## System Architecture & Workflow Philosophy
+
+The driving philosophy behind this suite is **Modular Prompt Assembly**. Instead of maintaining monolithic, cluttered text nodes for every single prompt variation, this suite allows you to build a clean matrix:
+
+```text
+  [ Character Prompt Node ] ──┐
+                              ▼
+  [ Scene Direction Selector ] ──► [ Join Strings ] ──► [ KSampler ]
+                              ▲
+  [ Lighting/Style Node ] ────┘
+
+```
+
+By putting your complex environment and staging plans into the **Text Line Selector** or **Prompt Line**, you can pipeline up to dozens of unique cinematic directions, use the **Single Prompt** node to handle dynamic weights or on/off states, and merge them with a fixed character asset block. This results in incredibly organized, scalable, and automated generation grids.
+
+---
+
+## Installation
+
+### Via ComfyUI Manager (Recommended)
+
+1. Open ComfyUI and click on the **Manager** button.
+2. Search for `ComfyUI Text-Driven Workflows`.
+3. Click **Install**, then restart ComfyUI.
+
+### Manual Git Clone
+
+Navigate to your ComfyUI custom nodes directory and run:
+
+```bash
+cd ComfyUI/custom_nodes
+git clone https://github.com/kanryu/ComfyUI-Text-Driven-Workflows.git
+
+```
+
+Restart your ComfyUI server to load the extension.
+
+---
+
+## License
+
+This project is licensed under the **GNU GPLv3 License** - see the LICENSE file for details. Developed and maintained by **KATO Kanryu** ([k.kanryu@gmail.com](mailto:k.kanryu@gmail.com)).
