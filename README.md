@@ -114,7 +114,26 @@ The driving philosophy behind this suite is **Modular Prompt Assembly**. Instead
 
 By putting your complex environment and staging plans into the **Text Line Selector** or **Prompt Line**, you can pipeline up to dozens of unique cinematic directions, use the **Single Prompt** node to handle dynamic weights or on/off states, and merge them with a fixed character asset block. This results in incredibly organized, scalable, and automated generation grids.
 
+---
+
+## Examples
+
+A ready-to-use sample project is available in the `examples` folder so you can test the core capabilities of this extension instantly. You can load this environment by simply dragging either the JSON file (`text_driven_batch_sample.json`) or the screenshot image below directly into your ComfyUI canvas.
+
 ![Text-Driven Workflows Sample Workflow](examples/text_driven_batch_sample.jpg)
+
+### Workflow Breakdown & Key Mechanics
+This sample project demonstrates a highly automated, multi-prompt batch generation pipeline utilizing the following core mechanics:
+
+* **The "Batch Size = 1 but 2 Images" Mechanic:**
+  - The **`Prompt Line`** node extracts two distinct action rows simultaneously (`max_rows = 2`).
+  - These rows are combined with the character base from **`Text Line Selector`** and fed into **`Join Strings`**.
+  - ComfyUI's KSampler detects the multiple text conditioning inputs and automatically generates two completely unique scenes simultaneously, even though the latent `batch_size` remains set to 1.
+* **Full Automation via Auto-Increment:**
+  - An external `Int` node configured with `control after generate: increment` is routed into the `start_index` pin. 
+  - This allows the workflow to automatically sequence through up to 25 different scene combinations sequentially on every queue execution for hands-free matrix collection.
+* **Native SDXL Driving:**
+  - The **`Resolution Selector`** seamlessly controls dimensions for both the latent generator and CLIP text encoding nodes simultaneously to prevent aspect ratio distortion.
 ---
 
 ## Installation
