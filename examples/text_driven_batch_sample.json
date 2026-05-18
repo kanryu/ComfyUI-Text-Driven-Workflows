@@ -1,0 +1,263 @@
+{
+  "20": {
+    "inputs": {
+      "text": ", masterpiece, best quality, ultra-detailed, anime artwork",
+      "multiplier": 1,
+      "active": true
+    },
+    "class_type": "TextDrivenSinglePrompt",
+    "_meta": {
+      "title": "Single Prompt (Text-Driven)"
+    }
+  },
+  "21": {
+    "inputs": {
+      "delimiter": "",
+      "string_inputs.string0": [
+        "36",
+        0
+      ],
+      "string_inputs.string1": [
+        "20",
+        0
+      ]
+    },
+    "class_type": "TextDrivenJoinStrings",
+    "_meta": {
+      "title": "Join Strings (Text-Driven)"
+    }
+  },
+  "23": {
+    "inputs": {
+      "text_list": "Character A (school girl)|-|1girl, high school girl, classic sailor uniform, short black bob hair, neat, youthful\nCharacter B (businessman)|-|1man, handsome businessman, sharp dark navy suit, neat necktie, short styled hair\nCharacter C (mascot costume)|-|1person, wearing a cute fluffy brown bear mascot costume, oversized head\nCharacter D (artist)|-|1girl, female artist, paint-splattered denim overalls, colorful t-shirt, messy bun hair\nCharacter E (photographer)|-|1man, cool male photographer, brown leather jacket, vintage film camera slung over shoulder\n",
+      "selected_line": "1girl, high school girl, classic sailor uniform, short black bob hair, neat, youthful"
+    },
+    "class_type": "TextDrivenTextLineSelector",
+    "_meta": {
+      "title": "Text Line Selector (Text-Driven)"
+    }
+  },
+  "25": {
+    "inputs": {
+      "resolutions_list": "768x1024 (3:4)\n832x1216 (13:19)\n960x1280 (3:4)\n1024x1365 (3:4)\n1024x1496 (paper)\n1080x1440 (3:4)\n1152x1536 (3:4)\n1280x1728 (3:4)\n1536x1536 (1:1)",
+      "selected_resolution": "1024x1365"
+    },
+    "class_type": "TextDrivenResolutionSelector",
+    "_meta": {
+      "title": "Resolution Selector (Text-Driven)"
+    }
+  },
+  "26": {
+    "inputs": {
+      "seed": 1053390217361694,
+      "steps": 20,
+      "cfg": 8,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 1,
+      "model": [
+        "27",
+        0
+      ],
+      "positive": [
+        "28",
+        0
+      ],
+      "negative": [
+        "29",
+        0
+      ],
+      "latent_image": [
+        "30",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "KSampler"
+    }
+  },
+  "27": {
+    "inputs": {
+      "ckpt_name": "waiIllustriousSDXL_v170.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Load Checkpoint"
+    }
+  },
+  "28": {
+    "inputs": {
+      "width": [
+        "25",
+        0
+      ],
+      "height": [
+        "25",
+        1
+      ],
+      "crop_w": 0,
+      "crop_h": 0,
+      "target_width": [
+        "25",
+        0
+      ],
+      "target_height": [
+        "25",
+        1
+      ],
+      "text_g": [
+        "21",
+        0
+      ],
+      "text_l": "",
+      "clip": [
+        "27",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncodeSDXL",
+    "_meta": {
+      "title": "CLIPTextEncodeSDXL"
+    }
+  },
+  "29": {
+    "inputs": {
+      "text": "worst quality, low quality, realistic, 3d, photograph, deformed, sketch, bad anatomy",
+      "clip": [
+        "27",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "30": {
+    "inputs": {
+      "width": [
+        "25",
+        0
+      ],
+      "height": [
+        "25",
+        1
+      ],
+      "batch_size": 1
+    },
+    "class_type": "EmptyLatentImage",
+    "_meta": {
+      "title": "Empty Latent Image"
+    }
+  },
+  "32": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "images": [
+        "33",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "Save Image"
+    }
+  },
+  "33": {
+    "inputs": {
+      "samples": [
+        "26",
+        0
+      ],
+      "vae": [
+        "27",
+        2
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    }
+  },
+  "35": {
+    "inputs": {
+      "prompt": "[CHARACTER], sleeping deeply on a messy bed, one leg carelessly outstretched from the blanket, drooling slightly, cozy bedroom, morning sunlight filtering through curtains, anime style, highly detailed, vibrant colors\n[CHARACTER], running hurriedly down a suburban street, holding a slice of toast in her mouth, panicked expression, late for school, dynamic action pose, wind blowing in hair, motion blur, anime style, crisp lines\n[CHARACTER], standing at the classroom doorway, leaning against the sliding door, making a sigh of relief, hand placed on her chest, tired but relieved expression, morning classroom background, sunlight reflecting on desks, anime style, detailed scenery\n[CHARACTER], sitting on a picnic blanket on the park grass, eating a bento box lunch, holding chopsticks, happy and relaxed smile, beautiful sunny day, lush green trees and soft shadows, peaceful atmosphere, anime style\n[CHARACTER], jumping high over a hurdle on a track and field stadium, running track, dynamic mid-air action pose, determined and focused expression, athletic movement, grandstand and blue sky in the background, cinematic lighting, anime style\n",
+      "start_index": [
+        "39",
+        0
+      ],
+      "max_rows": [
+        "38",
+        0
+      ],
+      "remove_empty_lines": true,
+      "loops": true
+    },
+    "class_type": "TextDrivenPromptLine",
+    "_meta": {
+      "title": "Prompt Line (Text-Driven)"
+    }
+  },
+  "36": {
+    "inputs": {
+      "string": [
+        "35",
+        0
+      ],
+      "find": "[CHARACTER],",
+      "replace": [
+        "23",
+        0
+      ]
+    },
+    "class_type": "StringReplace",
+    "_meta": {
+      "title": "Replace"
+    }
+  },
+  "37": {
+    "inputs": {
+      "value": 0
+    },
+    "class_type": "PrimitiveInt",
+    "_meta": {
+      "title": "Int"
+    }
+  },
+  "38": {
+    "inputs": {
+      "value": 2
+    },
+    "class_type": "PrimitiveInt",
+    "_meta": {
+      "title": "Int"
+    }
+  },
+  "39": {
+    "inputs": {
+      "a": [
+        "37",
+        0
+      ],
+      "b": [
+        "38",
+        0
+      ],
+      "operation": "multiply"
+    },
+    "class_type": "TextDrivenMathInt",
+    "_meta": {
+      "title": "Math (Int) (Text-Driven)"
+    }
+  },
+  "41": {
+    "inputs": {
+      "value": "======================================================================\n[ SAMPLE WORKFLOW: Text-Driven Multi-Prompt Batch Generation ]\n======================================================================\n\n* Multi-Prompt Batch Execution:\n  Demonstrates how to generate multiple completely distinct scenes in a single \n  execution without increasing the latent batch size.\n\n* Decoupled System Architecture:\n  Separates the fixed \"Character Asset\" (managed via Text Line Selector) from \n  the variable \"Action/Staging Plans\" (sequenced via Prompt Line).\n\n* The \"Batch Size = 1 but 2 Images\" Mechanic:\n  - \"Prompt Line\" extracts multiple staging rows simultaneously (via max_rows >= 2).\n  - The extracted rows are combined with the character base and fed into \"Join Strings\".\n  - ComfyUI's KSampler detects the multiple text conditioning inputs and automatically \n    generates one unique image per prompt, even with a latent batch_size of 1.\n\n* Native SDXL Resolution Driving:\n  \"Resolution Selector\" simultaneously controls the dimensions for both \n  \"Empty Latent Image\" and \"CLIP Text Encode SDXL\" to prevent aspect ratio distortion.\n\n======================================================================"
+    },
+    "class_type": "PrimitiveStringMultiline",
+    "_meta": {
+      "title": "String (Multiline)"
+    }
+  }
+}
