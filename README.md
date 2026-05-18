@@ -114,6 +114,7 @@ The driving philosophy behind this suite is **Modular Prompt Assembly**. Instead
 
 By putting your complex environment and staging plans into the **Text Line Selector** or **Prompt Line**, you can pipeline up to dozens of unique cinematic directions, use the **Single Prompt** node to handle dynamic weights or on/off states, and merge them with a fixed character asset block. This results in incredibly organized, scalable, and automated generation grids.
 
+![Text-Driven Workflows Sample Workflow](examples/text_driven_batch_sample.jpg)
 ---
 
 ## Installation
