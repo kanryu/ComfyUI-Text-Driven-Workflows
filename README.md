@@ -39,11 +39,11 @@ Concatenates multiple string inputs into a single text block using a custom defi
 * `string_inputs` (Autogrow Input): Dynamically expanding input slots.
 
 
-* **Behavior:** Fully compliant with ComfyUI V3's native 0-indexed Autogrow behavior (`string0`, `string1`, etc.). It extracts the index markers via regular expressions, sorts them numerically to maintain strict structural ordering, and joins them into a unified prompt block.
+* **Behavior:** Fully compliant with ComfyUI V3's native 0-indexed Autogrow behavior (`string0`, `string1`, etc.). Connecting a line from another node to an input pin automatically generates and increments a new input pin. You can connect as many input pins as you need. It extracts the index markers via regular expressions, sorts them numerically to maintain strict structural ordering, and joins them into a unified prompt block.
 
 ### 3. Prompt Line (Text-Driven)
 
-Extracts specific lines from a massive multi-line text block to output as a structured string list, specialized for advanced batch processing loops.
+Extracts specific lines from a multi-line text block to output as a structured string list, fully supporting batch image generation workflows.
 
 * **Visual Identifiers:** Distinctive dark green design (`color: #225522`, `bgcolor: #33aa33`).
 * **Inputs:**
@@ -51,18 +51,25 @@ Extracts specific lines from a massive multi-line text block to output as a stru
 * `start_index` (Int, Default: `0`): The line index to begin extraction.
 * `max_rows` (Int, Default: `1000`): Maximum lines to extract.
 * `remove_empty_lines` (Boolean, Default: `True`): Automatically cleans up whitespace and dead lines.
-* `loops` (Boolean, Default: `False`): Wraparound toggle. If `True`, when the requested row count exceeds available lines, it loops back to index `0` rather than stopping.
+* `loops` (Boolean, Default: `False`): Wraparound toggle.
 
 
+* **Behavior:** This node is specialized for batch image generation. By setting `max_rows` to 2 or more, it outputs multiple prompt lines simultaneously, allowing you to execute two or more prompts at the same time in a single batch generation run. The list output of this node can also be passed to downstream string manipulation nodes for further processing. If `loops` is `True`, it loops back to index `0` when the requested row count exceeds available lines.
 
-### 4. Text Line Selector & Resolution Selector
+### 4. Text Line Selector (Text-Driven)
 
-Studio-grade switches designed to store massive direction plans/resolutions externally.
+A studio-grade scenario switch designed to store massive direction and staging plans externally.
 
-* Allows you to record dozens of rich staging configurations and recall them instantly via clean drop-down selectors.
-* Seamlessly pipes chosen resolutions or scenario prompts into downstream generator nodes, completely removing the need to type out repetitive structures manually.
+* **Behavior:** Allows you to record dozens of rich staging configurations within the node or an external file and recall them instantly via a clean drop-down selector. You can input a label and the custom delimiter **`|-|`** (e.g., `Label|-|Prompt`) for each line of the multi-line text, which makes the options in the combo box much easier to read and select. It seamlessly pipes the chosen scenario prompt into downstream prompt-assembly nodes, completely removing the need to type out repetitive structures manually.
 
-### 5. Math (Int) (Text-Driven)
+### 5. Resolution Selector (Text-Driven)
+
+A dedicated resolution management utility designed to store preset aspect ratios and target dimensions externally.
+
+* **Behavior:** Allows you to register major resolution pairs and switch between them instantly via a clean drop-down menu. It outputs the width and height dimensions directly into downstream generator or latent nodes, eliminating manual typing and aspect ratio calculation mistakes.
+* **Note:** By default, this node lists preset resolutions that are popular for SDXL. You can easily modify the configurations to delete unnecessary rows or add your own preferred landscape resolutions.
+
+### 6. Math (Int) (Text-Driven)
 
 An advanced integer arithmetic core designed to calculate loops, steps, dimensions, and indexing logic safely.
 
