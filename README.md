@@ -136,6 +136,7 @@ git clone https://github.com/kanryu/ComfyUI-Text-Driven-Workflows.git
 
 Restart your ComfyUI server to load the extension.
 
+* **Note:**  No external Python dependencies required (pure ComfyUI V3 API).
 ---
 
 ## License
