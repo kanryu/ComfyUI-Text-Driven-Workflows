@@ -1,263 +1,1007 @@
 {
-  "20": {
-    "inputs": {
-      "text": ", masterpiece, best quality, ultra-detailed, anime artwork",
-      "multiplier": 1,
-      "active": true
-    },
-    "class_type": "TextDrivenSinglePrompt",
-    "_meta": {
-      "title": "Single Prompt (Text-Driven)"
-    }
-  },
-  "21": {
-    "inputs": {
-      "delimiter": "",
-      "string_inputs.string0": [
-        "36",
-        0
+  "id": "1dca4ce3-5508-4ff5-b7d8-00d38c6c5a4b",
+  "revision": 0,
+  "last_node_id": 41,
+  "last_link_id": 42,
+  "nodes": [
+    {
+      "id": 28,
+      "type": "CLIPTextEncodeSDXL",
+      "pos": [
+        7703.299579752311,
+        962.8067560188761
       ],
-      "string_inputs.string1": [
-        "20",
-        0
+      "size": [
+        210,
+        286
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 27
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "widget": {
+            "name": "width"
+          },
+          "link": 19
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "widget": {
+            "name": "height"
+          },
+          "link": 20
+        },
+        {
+          "name": "target_width",
+          "type": "INT",
+          "widget": {
+            "name": "target_width"
+          },
+          "link": 22
+        },
+        {
+          "name": "target_height",
+          "type": "INT",
+          "widget": {
+            "name": "target_height"
+          },
+          "link": 21
+        },
+        {
+          "name": "text_g",
+          "type": "STRING",
+          "widget": {
+            "name": "text_g"
+          },
+          "link": 34
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            30
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.19.3",
+        "Node name for S&R": "CLIPTextEncodeSDXL"
+      },
+      "widgets_values": [
+        1024,
+        1024,
+        0,
+        0,
+        1024,
+        1024,
+        "",
+        ""
       ]
     },
-    "class_type": "TextDrivenJoinStrings",
-    "_meta": {
-      "title": "Join Strings (Text-Driven)"
-    }
-  },
-  "23": {
-    "inputs": {
-      "text_list": "Character A (school girl)|-|1girl, high school girl, classic sailor uniform, short black bob hair, neat, youthful\nCharacter B (businessman)|-|1man, handsome businessman, sharp dark navy suit, neat necktie, short styled hair\nCharacter C (mascot costume)|-|1person, wearing a cute fluffy brown bear mascot costume, oversized head\nCharacter D (artist)|-|1girl, female artist, paint-splattered denim overalls, colorful t-shirt, messy bun hair\nCharacter E (photographer)|-|1man, cool male photographer, brown leather jacket, vintage film camera slung over shoulder\n",
-      "selected_line": "1girl, high school girl, classic sailor uniform, short black bob hair, neat, youthful"
-    },
-    "class_type": "TextDrivenTextLineSelector",
-    "_meta": {
-      "title": "Text Line Selector (Text-Driven)"
-    }
-  },
-  "25": {
-    "inputs": {
-      "resolutions_list": "768x1024 (3:4)\n832x1216 (13:19)\n960x1280 (3:4)\n1024x1365 (3:4)\n1024x1496 (paper)\n1080x1440 (3:4)\n1152x1536 (3:4)\n1280x1728 (3:4)\n1536x1536 (1:1)",
-      "selected_resolution": "1024x1365"
-    },
-    "class_type": "TextDrivenResolutionSelector",
-    "_meta": {
-      "title": "Resolution Selector (Text-Driven)"
-    }
-  },
-  "26": {
-    "inputs": {
-      "seed": 1053390217361694,
-      "steps": 20,
-      "cfg": 8,
-      "sampler_name": "euler",
-      "scheduler": "simple",
-      "denoise": 1,
-      "model": [
-        "27",
-        0
+    {
+      "id": 26,
+      "type": "KSampler",
+      "pos": [
+        7974.095399461417,
+        1288.8546375968308
       ],
-      "positive": [
-        "28",
-        0
+      "size": [
+        270,
+        262
       ],
-      "negative": [
-        "29",
-        0
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 18
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 30
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 31
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 23
+        }
       ],
-      "latent_image": [
-        "30",
-        0
-      ]
-    },
-    "class_type": "KSampler",
-    "_meta": {
-      "title": "KSampler"
-    }
-  },
-  "27": {
-    "inputs": {
-      "ckpt_name": "waiIllustriousSDXL_v170.safetensors"
-    },
-    "class_type": "CheckpointLoaderSimple",
-    "_meta": {
-      "title": "Load Checkpoint"
-    }
-  },
-  "28": {
-    "inputs": {
-      "width": [
-        "25",
-        0
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            28
+          ]
+        }
       ],
-      "height": [
-        "25",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.19.3",
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        1053390217361694,
+        "randomize",
+        20,
+        8,
+        "euler",
+        "simple",
         1
+      ]
+    },
+    {
+      "id": 33,
+      "type": "VAEDecode",
+      "pos": [
+        8270.99933631732,
+        1190.4938241598938
       ],
-      "crop_w": 0,
-      "crop_h": 0,
-      "target_width": [
-        "25",
-        0
+      "size": [
+        144.85732412034304,
+        46
       ],
-      "target_height": [
-        "25",
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 28
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 33
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            29
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.19.3",
+        "Node name for S&R": "VAEDecode"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 29,
+      "type": "CLIPTextEncode",
+      "pos": [
+        7702.085248722223,
+        1450.9678301132597
+      ],
+      "size": [
+        218.659765625,
+        88
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 32
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            31
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.19.3",
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "worst quality, low quality, realistic, 3d, photograph, deformed, sketch, bad anatomy"
+      ]
+    },
+    {
+      "id": 27,
+      "type": "CheckpointLoaderSimple",
+      "pos": [
+        7366.32271890357,
+        1395.7157682443674
+      ],
+      "size": [
+        270,
+        98
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            18
+          ]
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            27,
+            32
+          ]
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            33
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.19.3",
+        "Node name for S&R": "CheckpointLoaderSimple"
+      },
+      "widgets_values": [
+        "waiIllustriousSDXL_v170.safetensors"
+      ]
+    },
+    {
+      "id": 32,
+      "type": "SaveImage",
+      "pos": [
+        7393.645167080513,
+        596.6859504480864
+      ],
+      "size": [
+        396.89759264393433,
+        325.7599921338574
+      ],
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 29
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.19.3",
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "ComfyUI"
+      ]
+    },
+    {
+      "id": 21,
+      "type": "TextDrivenJoinStrings",
+      "pos": [
+        7397.288160170755,
+        971.9142387445168
+      ],
+      "size": [
+        237.2390387501913,
+        118
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "string0",
+          "name": "string_inputs.string0",
+          "type": "STRING",
+          "link": 37
+        },
+        {
+          "label": "string1",
+          "name": "string_inputs.string1",
+          "shape": 7,
+          "type": "STRING",
+          "link": 38
+        },
+        {
+          "label": "string2",
+          "name": "string_inputs.string2",
+          "shape": 7,
+          "type": "STRING",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "string_out",
+          "type": "STRING",
+          "links": [
+            34
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "TextDrivenJoinStrings"
+      },
+      "widgets_values": [
+        ""
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 30,
+      "type": "EmptyLatentImage",
+      "pos": [
+        7479.862670216589,
+        1181.3863414342918
+      ],
+      "size": [
+        210,
+        106
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "width",
+          "type": "INT",
+          "widget": {
+            "name": "width"
+          },
+          "link": 24
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "widget": {
+            "name": "height"
+          },
+          "link": 25
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            23
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.19.3",
+        "Node name for S&R": "EmptyLatentImage"
+      },
+      "widgets_values": [
+        512,
+        512,
         1
-      ],
-      "text_g": [
-        "21",
-        0
-      ],
-      "text_l": "",
-      "clip": [
-        "27",
-        1
       ]
     },
-    "class_type": "CLIPTextEncodeSDXL",
-    "_meta": {
-      "title": "CLIPTextEncodeSDXL"
-    }
-  },
-  "29": {
-    "inputs": {
-      "text": "worst quality, low quality, realistic, 3d, photograph, deformed, sketch, bad anatomy",
-      "clip": [
-        "27",
-        1
+    {
+      "id": 20,
+      "type": "TextDrivenSinglePrompt",
+      "pos": [
+        7145.314471428029,
+        962.8067560188761
+      ],
+      "size": [
+        223.9439453125,
+        136
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "optional_text_in",
+          "shape": 7,
+          "type": "STRING",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "string_out",
+          "type": "STRING",
+          "links": [
+            38
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "TextDrivenSinglePrompt"
+      },
+      "widgets_values": [
+        ", masterpiece, best quality, ultra-detailed, anime artwork",
+        1,
+        true
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 25,
+      "type": "TextDrivenResolutionSelector",
+      "pos": [
+        7146.435348280676,
+        1151.0280656821437
+      ],
+      "size": [
+        287.7678338945101,
+        132
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "width",
+          "type": "INT",
+          "links": [
+            19,
+            22,
+            24
+          ]
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "links": [
+            20,
+            21,
+            25
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "TextDrivenResolutionSelector"
+      },
+      "widgets_values": [
+        "768x1024 (3:4)\n832x1216 (13:19)\n960x1280 (3:4)\n1024x1365 (3:4)\n1024x1496 (paper)\n1080x1440 (3:4)\n1152x1536 (3:4)\n1280x1728 (3:4)\n1536x1536 (1:1)",
+        "1024x1365 (3:4)"
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 36,
+      "type": "StringReplace",
+      "pos": [
+        7148.350299003234,
+        716.2975569115094
+      ],
+      "size": [
+        210,
+        196
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "string",
+          "type": "STRING",
+          "widget": {
+            "name": "string"
+          },
+          "link": 36
+        },
+        {
+          "name": "replace",
+          "type": "STRING",
+          "widget": {
+            "name": "replace"
+          },
+          "link": 35
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            37
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.19.3",
+        "Node name for S&R": "StringReplace"
+      },
+      "widgets_values": [
+        "",
+        "[CHARACTER],",
+        ""
       ]
     },
-    "class_type": "CLIPTextEncode",
-    "_meta": {
-      "title": "CLIP Text Encode (Prompt)"
-    }
-  },
-  "30": {
-    "inputs": {
-      "width": [
-        "25",
-        0
+    {
+      "id": 35,
+      "type": "TextDrivenPromptLine",
+      "pos": [
+        6810.766272639455,
+        868.6961011872451
       ],
-      "height": [
-        "25",
-        1
+      "size": [
+        291.31737280734524,
+        196.96417242478628
       ],
-      "batch_size": 1
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "start_index",
+          "type": "INT",
+          "widget": {
+            "name": "start_index"
+          },
+          "link": 42
+        },
+        {
+          "name": "max_rows",
+          "type": "INT",
+          "widget": {
+            "name": "max_rows"
+          },
+          "link": 39
+        }
+      ],
+      "outputs": [
+        {
+          "name": "string_out",
+          "shape": 6,
+          "type": "STRING",
+          "links": [
+            36
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "TextDrivenPromptLine"
+      },
+      "widgets_values": [
+        "[CHARACTER], sleeping deeply on a messy bed, one leg carelessly outstretched from the blanket, drooling slightly, cozy bedroom, morning sunlight filtering through curtains, anime style, highly detailed, vibrant colors\n[CHARACTER], running hurriedly down a suburban street, holding a slice of toast in her mouth, panicked expression, late for school, dynamic action pose, wind blowing in hair, motion blur, anime style, crisp lines\n[CHARACTER], standing at the classroom doorway, leaning against the sliding door, making a sigh of relief, hand placed on her chest, tired but relieved expression, morning classroom background, sunlight reflecting on desks, anime style, detailed scenery\n[CHARACTER], sitting on a picnic blanket on the park grass, eating a bento box lunch, holding chopsticks, happy and relaxed smile, beautiful sunny day, lush green trees and soft shadows, peaceful atmosphere, anime style\n[CHARACTER], jumping high over a hurdle on a track and field stadium, running track, dynamic mid-air action pose, determined and focused expression, athletic movement, grandstand and blue sky in the background, cinematic lighting, anime style\n",
+        0,
+        2,
+        true,
+        true
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
     },
-    "class_type": "EmptyLatentImage",
-    "_meta": {
-      "title": "Empty Latent Image"
-    }
-  },
-  "32": {
-    "inputs": {
-      "filename_prefix": "ComfyUI",
-      "images": [
-        "33",
-        0
+    {
+      "id": 23,
+      "type": "TextDrivenTextLineSelector",
+      "pos": [
+        6807.12327954923,
+        1120.0626244149516
+      ],
+      "size": [
+        298.6033589878589,
+        168.4273932177764
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "string",
+          "type": "STRING",
+          "links": [
+            35
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "TextDrivenTextLineSelector"
+      },
+      "widgets_values": [
+        "Character A (school girl)|-|1girl, high school girl, classic sailor uniform, short black bob hair, neat, youthful\nCharacter B (businessman)|-|1man, handsome businessman, sharp dark navy suit, neat necktie, short styled hair\nCharacter C (mascot costume)|-|1person, wearing a cute fluffy brown bear mascot costume, oversized head\nCharacter D (artist)|-|1girl, female artist, paint-splattered denim overalls, colorful t-shirt, messy bun hair\nCharacter E (photographer)|-|1man, cool male photographer, brown leather jacket, vintage film camera slung over shoulder\n",
+        "Character A (school girl)"
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 39,
+      "type": "TextDrivenMathInt",
+      "pos": [
+        6561.828411471909,
+        982.2360525002341
+      ],
+      "size": [
+        222.75047581589752,
+        106
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "a",
+          "type": "INT",
+          "widget": {
+            "name": "a"
+          },
+          "link": 41
+        },
+        {
+          "name": "b",
+          "type": "INT",
+          "widget": {
+            "name": "b"
+          },
+          "link": 40
+        }
+      ],
+      "outputs": [
+        {
+          "name": "int_out",
+          "type": "INT",
+          "links": [
+            42
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "TextDrivenMathInt"
+      },
+      "widgets_values": [
+        0,
+        0,
+        "multiply"
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 38,
+      "type": "PrimitiveInt",
+      "pos": [
+        6569.114397652454,
+        1131.598769200758
+      ],
+      "size": [
+        210,
+        82
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "INT",
+          "type": "INT",
+          "links": [
+            39,
+            40
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.19.3",
+        "Node name for S&R": "PrimitiveInt"
+      },
+      "widgets_values": [
+        2,
+        "fixed"
       ]
     },
-    "class_type": "SaveImage",
-    "_meta": {
-      "title": "Save Image"
-    }
-  },
-  "33": {
-    "inputs": {
-      "samples": [
-        "26",
-        0
+    {
+      "id": 37,
+      "type": "PrimitiveInt",
+      "pos": [
+        6572.757390742642,
+        847.4453081607464
       ],
-      "vae": [
-        "27",
-        2
+      "size": [
+        210,
+        82
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "INT",
+          "type": "INT",
+          "links": [
+            41
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.19.3",
+        "Node name for S&R": "PrimitiveInt"
+      },
+      "widgets_values": [
+        0,
+        "increment"
       ]
     },
-    "class_type": "VAEDecode",
-    "_meta": {
-      "title": "VAE Decode"
+    {
+      "id": 41,
+      "type": "PrimitiveStringMultiline",
+      "pos": [
+        6577.614714862973,
+        615.5080814144064
+      ],
+      "size": [
+        490.46766174137156,
+        194.53551036461522
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.19.3",
+        "Node name for S&R": "PrimitiveStringMultiline"
+      },
+      "widgets_values": [
+        "======================================================================\n[ SAMPLE WORKFLOW: Text-Driven Multi-Prompt Batch Generation ]\n======================================================================\n\n* Multi-Prompt Batch Execution:\n  Demonstrates how to generate multiple completely distinct scenes in a single \n  execution without increasing the latent batch size.\n\n* Decoupled System Architecture:\n  Separates the fixed \"Character Asset\" (managed via Text Line Selector) from \n  the variable \"Action/Staging Plans\" (sequenced via Prompt Line).\n\n* The \"Batch Size = 1 but 2 Images\" Mechanic:\n  - \"Prompt Line\" extracts multiple staging rows simultaneously (via max_rows >= 2).\n  - The extracted rows are combined with the character base and fed into \"Join Strings\".\n  - ComfyUI's KSampler detects the multiple text conditioning inputs and automatically \n    generates one unique image per prompt, even with a latent batch_size of 1.\n\n* Native SDXL Resolution Driving:\n  \"Resolution Selector\" simultaneously controls the dimensions for both \n  \"Empty Latent Image\" and \"CLIP Text Encode SDXL\" to prevent aspect ratio distortion.\n\n======================================================================"
+      ]
     }
-  },
-  "35": {
-    "inputs": {
-      "prompt": "[CHARACTER], sleeping deeply on a messy bed, one leg carelessly outstretched from the blanket, drooling slightly, cozy bedroom, morning sunlight filtering through curtains, anime style, highly detailed, vibrant colors\n[CHARACTER], running hurriedly down a suburban street, holding a slice of toast in her mouth, panicked expression, late for school, dynamic action pose, wind blowing in hair, motion blur, anime style, crisp lines\n[CHARACTER], standing at the classroom doorway, leaning against the sliding door, making a sigh of relief, hand placed on her chest, tired but relieved expression, morning classroom background, sunlight reflecting on desks, anime style, detailed scenery\n[CHARACTER], sitting on a picnic blanket on the park grass, eating a bento box lunch, holding chopsticks, happy and relaxed smile, beautiful sunny day, lush green trees and soft shadows, peaceful atmosphere, anime style\n[CHARACTER], jumping high over a hurdle on a track and field stadium, running track, dynamic mid-air action pose, determined and focused expression, athletic movement, grandstand and blue sky in the background, cinematic lighting, anime style\n",
-      "start_index": [
-        "39",
-        0
-      ],
-      "max_rows": [
-        "38",
-        0
-      ],
-      "remove_empty_lines": true,
-      "loops": true
-    },
-    "class_type": "TextDrivenPromptLine",
-    "_meta": {
-      "title": "Prompt Line (Text-Driven)"
-    }
-  },
-  "36": {
-    "inputs": {
-      "string": [
-        "35",
-        0
-      ],
-      "find": "[CHARACTER],",
-      "replace": [
-        "23",
-        0
+  ],
+  "links": [
+    [
+      18,
+      27,
+      0,
+      26,
+      0,
+      "MODEL"
+    ],
+    [
+      19,
+      25,
+      0,
+      28,
+      1,
+      "INT"
+    ],
+    [
+      20,
+      25,
+      1,
+      28,
+      2,
+      "INT"
+    ],
+    [
+      21,
+      25,
+      1,
+      28,
+      4,
+      "INT"
+    ],
+    [
+      22,
+      25,
+      0,
+      28,
+      3,
+      "INT"
+    ],
+    [
+      23,
+      30,
+      0,
+      26,
+      3,
+      "LATENT"
+    ],
+    [
+      24,
+      25,
+      0,
+      30,
+      0,
+      "INT"
+    ],
+    [
+      25,
+      25,
+      1,
+      30,
+      1,
+      "INT"
+    ],
+    [
+      27,
+      27,
+      1,
+      28,
+      0,
+      "CLIP"
+    ],
+    [
+      28,
+      26,
+      0,
+      33,
+      0,
+      "LATENT"
+    ],
+    [
+      29,
+      33,
+      0,
+      32,
+      0,
+      "IMAGE"
+    ],
+    [
+      30,
+      28,
+      0,
+      26,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      31,
+      29,
+      0,
+      26,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      32,
+      27,
+      1,
+      29,
+      0,
+      "CLIP"
+    ],
+    [
+      33,
+      27,
+      2,
+      33,
+      1,
+      "VAE"
+    ],
+    [
+      34,
+      21,
+      0,
+      28,
+      5,
+      "STRING"
+    ],
+    [
+      35,
+      23,
+      0,
+      36,
+      1,
+      "STRING"
+    ],
+    [
+      36,
+      35,
+      0,
+      36,
+      0,
+      "STRING"
+    ],
+    [
+      37,
+      36,
+      0,
+      21,
+      0,
+      "STRING"
+    ],
+    [
+      38,
+      20,
+      0,
+      21,
+      1,
+      "STRING"
+    ],
+    [
+      39,
+      38,
+      0,
+      35,
+      1,
+      "INT"
+    ],
+    [
+      40,
+      38,
+      0,
+      39,
+      1,
+      "INT"
+    ],
+    [
+      41,
+      37,
+      0,
+      39,
+      0,
+      "INT"
+    ],
+    [
+      42,
+      39,
+      0,
+      35,
+      0,
+      "INT"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 1.6469973594096068,
+      "offset": [
+        -6487.14705312153,
+        -505.6111231916685
       ]
     },
-    "class_type": "StringReplace",
-    "_meta": {
-      "title": "Replace"
-    }
+    "frontendVersion": "1.42.11"
   },
-  "37": {
-    "inputs": {
-      "value": 0
-    },
-    "class_type": "PrimitiveInt",
-    "_meta": {
-      "title": "Int"
-    }
-  },
-  "38": {
-    "inputs": {
-      "value": 2
-    },
-    "class_type": "PrimitiveInt",
-    "_meta": {
-      "title": "Int"
-    }
-  },
-  "39": {
-    "inputs": {
-      "a": [
-        "37",
-        0
-      ],
-      "b": [
-        "38",
-        0
-      ],
-      "operation": "multiply"
-    },
-    "class_type": "TextDrivenMathInt",
-    "_meta": {
-      "title": "Math (Int) (Text-Driven)"
-    }
-  },
-  "41": {
-    "inputs": {
-      "value": "======================================================================\n[ SAMPLE WORKFLOW: Text-Driven Multi-Prompt Batch Generation ]\n======================================================================\n\n* Multi-Prompt Batch Execution:\n  Demonstrates how to generate multiple completely distinct scenes in a single \n  execution without increasing the latent batch size.\n\n* Decoupled System Architecture:\n  Separates the fixed \"Character Asset\" (managed via Text Line Selector) from \n  the variable \"Action/Staging Plans\" (sequenced via Prompt Line).\n\n* The \"Batch Size = 1 but 2 Images\" Mechanic:\n  - \"Prompt Line\" extracts multiple staging rows simultaneously (via max_rows >= 2).\n  - The extracted rows are combined with the character base and fed into \"Join Strings\".\n  - ComfyUI's KSampler detects the multiple text conditioning inputs and automatically \n    generates one unique image per prompt, even with a latent batch_size of 1.\n\n* Native SDXL Resolution Driving:\n  \"Resolution Selector\" simultaneously controls the dimensions for both \n  \"Empty Latent Image\" and \"CLIP Text Encode SDXL\" to prevent aspect ratio distortion.\n\n======================================================================"
-    },
-    "class_type": "PrimitiveStringMultiline",
-    "_meta": {
-      "title": "String (Multiline)"
-    }
-  }
+  "version": 0.4
 }
