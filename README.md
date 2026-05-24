@@ -23,6 +23,7 @@ Two structured sample projects are available in the `examples/` directory to dem
    ![Text-Driven Prompting Sample Workflow](examples/text_driven_prompting_sample.jpg)
    * **Purpose:** Demonstrates the core pipeline workflow using the newly introduced dynamic nodes.
    * **How it works:** The overall prompt is finely segmented across the two nodes on the left. With simple mouse clicks, you can instantly adjust attention weight multipliers for specific prompt parts or skip them entirely. These segmented components are then concatenated by the *Join Strings* node and fed directly into the CLIP Text Encode.
+   * **Prompt Counting:** Approximates token counts for SD 1.5/SDXL with dynamic color feedback (Green/Yellow/Red), helping users optimize prompts within the 75-token threshold to prevent image degradation.
 
 2. **text_driven_batch_sample.json (Automated Grid Generation)**
    ![Text-Driven Batch Processing Sample Workflow](examples/text_driven_batch_sample.jpg)
@@ -30,7 +31,6 @@ Two structured sample projects are available in the `examples/` directory to dem
    * **How it works:** By utilizing the custom nodes provided in this extension library, you can execute multiple prompts concurrently in parallel. In this sample, you can select from 5 types of characters via a combobox, while 5 different situations automatically switch with each execution loop. This allows you to generate images for up to 25 different scenario combinations simultaneously (rendering 2 or more images at once) while freely modifying settings on the fly.
 
 ---
-
 ## Included Nodes
 
 ### 1. Join Strings (Text-Driven)
@@ -71,13 +71,19 @@ Extracts specific lines from a multi-line text block to output as a structured s
   * `loops` (Boolean, Default: `False`): Wraparound toggle.
 * **Behavior:** Specialized for batch image generation. By setting `max_rows` to 2 or more, it outputs multiple prompt lines simultaneously, executing multiple prompts in a single batch generation run. The list output can be passed to downstream string manipulation nodes. If `loops` is `True`, it loops back to index 0 when the requested row count exceeds available lines.
 
-### 5. Resolution Selector (Text-Driven)
+### 5. Prompt Token Counter (Text-Driven)
+An input-only visualization node that approximates token counts specifically for Stable Diffusion 1.5 and SDXL workflows.
+* **Inputs:**
+  * `prompt` (String, Force Input): The incoming combined prompt string from upstream nodes.
+* **Behavior:** Utilizing a highly optimized, high-speed estimation algorithm, it dynamically shifts background colors (Green ≤ 65, Yellow 66–75, Red ≥ 76) to visually warn users before prompts breach the critical 75-token CLIP chunk threshold. Tokens forced into the second section or later have a significantly lower probability of being referenced accurately during rendering, potentially leading to image breakdown.
+
+### 6. Resolution Selector (Text-Driven)
 A dedicated resolution management utility designed to store preset aspect ratios and target dimensions externally.
 * **Inputs:**
   * `selected_resolution` (Combo Select): Dropdown list containing preset resolution dimensions.
 * **Behavior:** Allows you to register major resolution pairs and switch between them instantly via a clean dropdown menu. It outputs the width and height dimensions directly into downstream generator or latent nodes, eliminating manual typing and aspect ratio calculation mistakes. Optimized out-of-the-box for popular SDXL aspect ratios.
 
-### 6. Single Prompt (Text-Driven)
+### 7. Single Prompt (Text-Driven)
 Manages a single prompt fragment with precision multiplier weighting and master active status control.
 * **Inputs:**
   * `text` (String, Multiline): The primary prompt fragment.
@@ -86,10 +92,8 @@ Manages a single prompt fragment with precision multiplier weighting and master 
   * `active` (Boolean, Default: `True`): Master bypass switch. If `False`, outputs an empty string instantly.
 * **Behavior:** Automatically combines `text` and `optional_text_in` with correct spacing. If the multiplier is not `1.0`, it cleanly wraps the final text into standard attention weight syntax: `(combined_text:multiplier)`. Built to handle unlinked optional pins flawlessly.
 
-### 7. Text Line Prompt (Text-Driven)
-
+### 8. Text Line Prompt (Text-Driven)
 An innovative editing node that allows intuitive control over long prompts entered with newline separations, enabling you to change attention weights or toggle skip on/off for each line with simple mouse clicks.
-
 * **Inputs:**
   * `text` (String, Multiline): The main text area to enter your line-separated prompt fragments.
   * `selected_line` (Combo Select): Selects a specific line from the multi-line text to edit.
@@ -97,12 +101,13 @@ An innovative editing node that allows intuitive control over long prompts enter
   * `active` (Boolean, Default: `True`): Toggles the output state for the selected line.
 * **Behavior:** Input parts or all of your prompts separated by newlines. By selecting a line via the combobox, you can adjust the weight multiplier or active status for that specific line. Deactivated lines are prepended with `//` and are automatically skipped during execution. The final output string from this node will have all newline characters removed at runtime.
 
-### 8. Text Line Selector (Text-Driven)
+### 9. Text Line Selector (Text-Driven)
 A studio-grade scenario switch designed to store massive direction and staging plans externally.
 * **Inputs:**
   * `text` (String, Multiline): Multi-line scenario database.
   * `selected_line` (Combo Select): Recalls direction presets based on labels.
 * **Behavior:** Allows you to record dozens of rich staging configurations within the node and recall them instantly via a clean drop-down selector. You can input a label and the custom delimiter `|-|` (e.g., `Label|-|Prompt`) for each line of the multi-line text, which makes the options in the combo box much easier to read and select. It seamlessly pipes the chosen scenario prompt into downstream prompt-assembly nodes.
+
 ### Workflow Breakdown & Key Mechanics
 This sample project demonstrates a highly automated, multi-prompt batch generation pipeline utilizing the following core mechanics:
 
