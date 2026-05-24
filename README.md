@@ -22,12 +22,12 @@ Two structured sample projects are available in the `examples/` directory to dem
 1. **text_driven_prompting_sample.json (Layered Prompting Synergy)**
    ![Text-Driven Prompting Sample Workflow](examples/text_driven_prompting_sample.jpg)
    * **Purpose:** Demonstrates the core pipeline workflow using the newly introduced dynamic nodes.
-   * **How it works:** A base prompt asset (e.g., character tokens with escaped brackets) is selected via the *Text Line Prompt* node. This base string seamlessly chains into the hidden `optional_text_in` slot of the *Multi Prompts* node, allowing you to stack, scale, or toggle aesthetic modifiers (attire, lighting, environment) on top of the base setup with simple clicks before sending the final compiled prompt to SDXL.
+   * **How it works:** The overall prompt is finely segmented across the two nodes on the left. With simple mouse clicks, you can instantly adjust attention weight multipliers for specific prompt parts or skip them entirely. These segmented components are then concatenated by the *Join Strings* node and fed directly into the CLIP Text Encode.
 
-2. **text_driven_batch_processing.json (Automated Grid Generation)**
+2. **text_driven_batch_sample.json (Automated Grid Generation)**
    ![Text-Driven Batch Processing Sample Workflow](examples/text_driven_batch_sample.jpg)
-   * **Purpose:** Demonstrates a batch processing architecture designed for sequential rendering grids.
-   * **How it works:** Uses the *Prompt Line* node to index and extract line-separated staging directions automatically across multiple prompt queues. Connected to downstream mathematical or switching elements, it allows you to safely automate generation variations across extensive asset libraries without UI clutter.
+   * **Purpose:** A minimal example demonstrating a batch generation setup that executes two or more prompts simultaneously in a single run.
+   * **How it works:** By utilizing the custom nodes provided in this extension library, you can execute multiple prompts concurrently in parallel. In this sample, you can select from 5 types of characters via a combobox, while 5 different situations automatically switch with each execution loop. This allows you to generate images for up to 25 different scenario combinations simultaneously (rendering 2 or more images at once) while freely modifying settings on the fly.
 
 ---
 
