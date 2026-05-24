@@ -275,9 +275,7 @@
         "ver": "0.19.3",
         "Node name for S&R": "CheckpointLoaderSimple"
       },
-      "widgets_values": [
-        "waiIllustriousSDXL_v170.safetensors"
-      ]
+      "widgets_values": ["sd_xl_base_1.0.safetensors"]
     },
     {
       "id": 32,
