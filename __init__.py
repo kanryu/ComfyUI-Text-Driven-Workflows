@@ -30,6 +30,10 @@ try:
     from .nodes import text_nodes_prompt_line
     _NODES.append(text_nodes_prompt_line.PromptLine)
     
+    # Import Prompt Token Counter node
+    from .nodes import text_nodes_token_counter
+    _NODES.append(text_nodes_token_counter.PromptTokenCounterTextDriven)
+    
     # Import Resolution Selector node
     from .nodes import text_nodes_resolution_selector
     _NODES.append(text_nodes_resolution_selector.ResolutionSelector)
