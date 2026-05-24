@@ -1,63 +1,9 @@
 {
   "id": "1d4e4326-6985-4b88-a21b-a8a603a38a6b",
   "revision": 0,
-  "last_node_id": 13,
-  "last_link_id": 24,
+  "last_node_id": 21,
+  "last_link_id": 31,
   "nodes": [
-    {
-      "id": 10,
-      "type": "TextDrivenJoinStrings",
-      "pos": [
-        624.0013774104677,
-        387.48467630854066
-      ],
-      "size": [
-        231.97501237517213,
-        98
-      ],
-      "flags": {},
-      "order": 6,
-      "mode": 0,
-      "inputs": [
-        {
-          "label": "string0",
-          "name": "string_inputs.string0",
-          "type": "STRING",
-          "link": 17
-        },
-        {
-          "label": "string1",
-          "name": "string_inputs.string1",
-          "shape": 7,
-          "type": "STRING",
-          "link": 18
-        },
-        {
-          "label": "string2",
-          "name": "string_inputs.string2",
-          "shape": 7,
-          "type": "STRING",
-          "link": null
-        }
-      ],
-      "outputs": [
-        {
-          "name": "string_out",
-          "type": "STRING",
-          "links": [
-            19
-          ]
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "TextDrivenJoinStrings"
-      },
-      "widgets_values": [
-        ","
-      ],
-      "color": "#232",
-      "bgcolor": "#353"
-    },
     {
       "id": 7,
       "type": "KSampler",
@@ -70,7 +16,7 @@
         262
       ],
       "flags": {},
-      "order": 9,
+      "order": 10,
       "mode": 0,
       "inputs": [
         {
@@ -109,7 +55,7 @@
         "Node name for S&R": "KSampler"
       },
       "widgets_values": [
-        893386370465587,
+        770281327801267,
         "randomize",
         30,
         7,
@@ -119,57 +65,15 @@
       ]
     },
     {
-      "id": 8,
-      "type": "VAEDecode",
+      "id": 1,
+      "type": "CheckpointLoaderSimple",
       "pos": [
-        1136.0795454545457,
-        441.47727272727286
+        628.323002754823,
+        530.5096418732777
       ],
       "size": [
-        140,
-        46
-      ],
-      "flags": {},
-      "order": 10,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "samples",
-          "type": "LATENT",
-          "link": 10
-        },
-        {
-          "name": "vae",
-          "type": "VAE",
-          "link": 20
-        }
-      ],
-      "outputs": [
-        {
-          "name": "IMAGE",
-          "type": "IMAGE",
-          "links": [
-            9
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.19.3",
-        "Node name for S&R": "VAEDecode"
-      },
-      "widgets_values": []
-    },
-    {
-      "id": 11,
-      "type": "TextDrivenResolutionSelector",
-      "pos": [
-        624.0013774104659,
-        684.5748966942159
-      ],
-      "size": [
-        259.2310546875,
-        132
+        210,
+        98
       ],
       "flags": {},
       "order": 0,
@@ -177,111 +81,35 @@
       "inputs": [],
       "outputs": [
         {
-          "name": "width",
-          "type": "INT",
+          "name": "MODEL",
+          "type": "MODEL",
           "links": [
-            23
+            12
           ]
         },
         {
-          "name": "height",
-          "type": "INT",
+          "name": "CLIP",
+          "type": "CLIP",
           "links": [
-            24
+            15,
+            16
           ]
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "TextDrivenResolutionSelector"
-      },
-      "widgets_values": [
-        "768x1024 (3:4)\n832x1216 (13:19)\n960x1280 (3:4)\n1024x1365 (3:4)\n1024x1496 (paper)\n1080x1440 (3:4)\n1152x1536 (3:4)\n1280x1728 (3:4)\n1536x1536 (1:1)",
-        "1024x1365 (3:4)"
-      ],
-      "color": "#232",
-      "bgcolor": "#353"
-    },
-    {
-      "id": 6,
-      "type": "EmptyLatentImage",
-      "pos": [
-        905.3719008264499,
-        660.0292699724531
-      ],
-      "size": [
-        210,
-        106
-      ],
-      "flags": {},
-      "order": 5,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "width",
-          "type": "INT",
-          "widget": {
-            "name": "width"
-          },
-          "link": 23
         },
         {
-          "name": "height",
-          "type": "INT",
-          "widget": {
-            "name": "height"
-          },
-          "link": 24
-        }
-      ],
-      "outputs": [
-        {
-          "name": "LATENT",
-          "type": "LATENT",
+          "name": "VAE",
+          "type": "VAE",
           "links": [
-            11
+            20
           ]
         }
       ],
       "properties": {
         "cnr_id": "comfy-core",
         "ver": "0.19.3",
-        "Node name for S&R": "EmptyLatentImage"
+        "Node name for S&R": "CheckpointLoaderSimple"
       },
       "widgets_values": [
-        1024,
-        1024,
-        1
-      ]
-    },
-    {
-      "id": 9,
-      "type": "SaveImage",
-      "pos": [
-        1134.8467630854004,
-        66.0898760330579
-      ],
-      "size": [
-        237.07128099173542,
-        324.3567493112946
-      ],
-      "flags": {},
-      "order": 11,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "images",
-          "type": "IMAGE",
-          "link": 9
-        }
-      ],
-      "outputs": [],
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.19.3",
-        "Node name for S&R": "SaveImage"
-      },
-      "widgets_values": [
-        "ComfyUI_TextDriven"
+        "waiIllustriousSDXL_v170.safetensors"
       ]
     },
     {
@@ -328,6 +156,102 @@
       "bgcolor": "#353"
     },
     {
+      "id": 11,
+      "type": "TextDrivenResolutionSelector",
+      "pos": [
+        624.0013774104659,
+        684.5748966942159
+      ],
+      "size": [
+        259.2310546875,
+        132
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "width",
+          "type": "INT",
+          "links": [
+            23
+          ]
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "links": [
+            24
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "TextDrivenResolutionSelector"
+      },
+      "widgets_values": [
+        "768x1024 (3:4)\n832x1216 (13:19)\n960x1280 (3:4)\n1024x1365 (3:4)\n1024x1496 (paper)\n1080x1440 (3:4)\n1152x1536 (3:4)\n1280x1728 (3:4)\n1536x1536 (1:1)",
+        "1024x1365 (3:4)"
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 10,
+      "type": "TextDrivenJoinStrings",
+      "pos": [
+        624.0013774104677,
+        387.48467630854066
+      ],
+      "size": [
+        231.97501237517213,
+        118
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "string0",
+          "name": "string_inputs.string0",
+          "type": "STRING",
+          "link": 17
+        },
+        {
+          "label": "string1",
+          "name": "string_inputs.string1",
+          "shape": 7,
+          "type": "STRING",
+          "link": 18
+        },
+        {
+          "label": "string2",
+          "name": "string_inputs.string2",
+          "shape": 7,
+          "type": "STRING",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "string_out",
+          "type": "STRING",
+          "links": [
+            19,
+            31
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "TextDrivenJoinStrings"
+      },
+      "widgets_values": [
+        ","
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
       "id": 3,
       "type": "TextDrivenMultiPrompts",
       "pos": [
@@ -339,7 +263,7 @@
         364
       ],
       "flags": {},
-      "order": 2,
+      "order": 3,
       "mode": 0,
       "inputs": [
         {
@@ -366,9 +290,9 @@
         "cinematic lighting, volumetric lighting",
         1,
         true,
-        "sundress, ruffled, cotton",
+        "sundress, ruffled, cotton, ruffled, cotton",
         1.2,
-        true,
+        false,
         "masterpiece, delicate, serene atmosphere",
         0.8,
         true,
@@ -398,34 +322,84 @@
       "bgcolor": "#353"
     },
     {
-      "id": 13,
-      "type": "MarkdownNote",
+      "id": 21,
+      "type": "TextDrivenPromptTokenCounter",
       "pos": [
-        717.6652892561983,
-        64.05148071625365
+        872.7961432506921,
+        392.6069214876045
       ],
       "size": [
-        388.06301652892535,
-        270.0120523415977
+        280.2857421875,
+        58
       ],
       "flags": {},
-      "order": 3,
+      "order": 9,
       "mode": 0,
-      "inputs": [],
-      "outputs": [],
-      "properties": {},
-      "widgets_values": [
-        "# Text-Driven Prompting Workflow Guide\n\nThis workflow streamlines prompt management and eliminates manual weight tweaking by utilizing two custom nodes for layered control.\n\n---\n\n## Node Overview\n\n### 1. Text Line Prompt (Text-Driven)\nManages a list of prompt assets or concepts line by line.\n* **Bi-directional Sync:** Select a line via the dropdown menu to modify its multiplier or active state. The raw text area updates automatically in real-time.\n* **Muting Function:** Deactivating a line prepends `//` to comment it out. These lines are completely skipped during backend execution to output a clean string.\n* **Regex Parsing:** Properly handles character LoRA escaped brackets `\\( \\)` and safely bypasses rows containing multiple unescaped brackets.\n\n### 2. Multi Prompts (Text-Driven)\nProvides centralized layer-control for multiple modifiers.\n* **Dynamic UI Layout:** Input fields dynamically hide or show based on the \"num_prompts\" value (up to 10 slots) to keep the canvas clean.\n* **Granular Controls:** Allows you to adjust individual multipliers and toggle the active state of each prompt fragment with a single click.\n\n---\n\n## Workflow Pipeline\n\nThe nodes are connected in a relay structure to compile the final prompt:\n\n1. **Base Generation:** [Text Line Prompt] manages base characters, core concepts, or specific styles.\n2. **Modifier Stacking:** The selected base prompt is fed into [Multi Prompts] via the hidden `optional_text_in` input pin.\n3. **Final Output:** [Multi Prompts] appends aesthetic modifiers (lighting, attire, quality tokens), then sends the fully combined string directly to the SDXL CLIP Text Encode.\n\n### Quick Start\n1. Choose a row in **Text Line Prompt** using the dropdown menu.\n2. Tweak individual weights or toggle active states in **Multi Prompts**.\n3. Click **Queue Prompt** to execute."
+      "inputs": [
+        {
+          "name": "prompt",
+          "type": "STRING",
+          "link": 31
+        }
       ],
-      "color": "#432",
-      "bgcolor": "#653"
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "TextDrivenPromptTokenCounter"
+      },
+      "widgets_values": [
+        "52"
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 8,
+      "type": "VAEDecode",
+      "pos": [
+        1175.594008264463,
+        441.4772727272729
+      ],
+      "size": [
+        140,
+        46
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 10
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 20
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            9
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.19.3",
+        "Node name for S&R": "VAEDecode"
+      },
+      "widgets_values": []
     },
     {
       "id": 4,
       "type": "CLIPTextEncode",
       "pos": [
-        896.5909090909092,
-        387.07816804407724
+        899.5179063360873,
+        484.4008264462807
       ],
       "size": [
         218.659765625,
@@ -471,15 +445,15 @@
       "id": 5,
       "type": "CLIPTextEncode",
       "pos": [
-        897.3226584022048,
-        524.1477272727292
+        903.9084022038585,
+        603.908402203858
       ],
       "size": [
         218.659765625,
         88
       ],
       "flags": {},
-      "order": 7,
+      "order": 5,
       "mode": 0,
       "inputs": [
         {
@@ -507,50 +481,110 @@
       ]
     },
     {
-      "id": 1,
-      "type": "CheckpointLoaderSimple",
+      "id": 6,
+      "type": "EmptyLatentImage",
       "pos": [
-        628.323002754823,
-        530.5096418732777
+        911.2258953168082,
+        724.4232093663918
       ],
       "size": [
         210,
-        98
+        106
       ],
       "flags": {},
-      "order": 4,
+      "order": 6,
       "mode": 0,
-      "inputs": [],
+      "inputs": [
+        {
+          "name": "width",
+          "type": "INT",
+          "widget": {
+            "name": "width"
+          },
+          "link": 23
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "widget": {
+            "name": "height"
+          },
+          "link": 24
+        }
+      ],
       "outputs": [
         {
-          "name": "MODEL",
-          "type": "MODEL",
+          "name": "LATENT",
+          "type": "LATENT",
           "links": [
-            12
-          ]
-        },
-        {
-          "name": "CLIP",
-          "type": "CLIP",
-          "links": [
-            15,
-            16
-          ]
-        },
-        {
-          "name": "VAE",
-          "type": "VAE",
-          "links": [
-            20
+            11
           ]
         }
       ],
       "properties": {
         "cnr_id": "comfy-core",
         "ver": "0.19.3",
-        "Node name for S&R": "CheckpointLoaderSimple"
+        "Node name for S&R": "EmptyLatentImage"
       },
-      "widgets_values": ["sd_xl_base_1.0.safetensors"]
+      "widgets_values": [
+        1024,
+        1024,
+        1
+      ]
+    },
+    {
+      "id": 9,
+      "type": "SaveImage",
+      "pos": [
+        1167.7754820936646,
+        72.67561983471076
+      ],
+      "size": [
+        237.07128099173542,
+        324.3567493112946
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 9
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.19.3",
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "ComfyUI_TextDriven"
+      ]
+    },
+    {
+      "id": 13,
+      "type": "MarkdownNote",
+      "pos": [
+        717.6652892561983,
+        64.05148071625365
+      ],
+      "size": [
+        388.06301652892535,
+        270.0120523415977
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "# Text-Driven Prompting Workflow Guide\n\nThis workflow streamlines prompt management and eliminates manual weight tweaking by utilizing dedicated custom nodes for layered control and real-time validation.\n\n## Node Overview\n\n### 1. Text Line Prompt (Text-Driven)\nManages a list of prompt assets or concepts line by line.\n- **Bi-directional Sync**: Select a line via the dropdown menu to modify its multiplier or active state. The raw text area updates automatically in real-time.\n- **Muting Function**: Deactivating a line prepends `//` to comment it out. These lines are completely skipped during backend execution.\n\n### 2. Multi Prompts (Text-Driven)\nAllows managing multiple independent prompt blocks simultaneously within a single node.\n- **Layered Control**: Each prompt block can be independently weighted with a multiplier or toggled active/inactive, streamlining the blending of styles, characters, and environments.\n\n### 3. Prompt Token Counter (Text-Driven)\nAn input-only visualization node designed specifically for Stable Diffusion 1.5 and SDXL to estimate the total token count of the incoming combined prompt.\n- **Real-time Color Signals**: \n  - **Green (≤ 65 tokens)**: Safe zone. The entire prompt fits comfortably within the primary context chunk.\n  - **Yellow (66–75 tokens)**: Warning zone. Approaching the absolute hardware limit of a single CLIP text encoder chunk.\n  - **Red (≥ 76 tokens)**: Danger zone. The prompt will be sliced into multiple chunks (sections).\n- **Chunk Slicing Risk**: Tokens forced into the second section or later have a significantly lower probability of being referenced accurately during rendering, which can dilute attention weights, skew character concepts, or lead to image breakdown.\n- **Approximation Note**: Since a strictly exact calculation requires a massive dictionary (~49k words), this node utilizes a highly optimized, high-speed approximation algorithm. The displayed count serves as a close reference estimate.\n\n### 4. Join Strings (Text-Driven)\nConcatenates strings from multiple text-driven nodes using a customizable delimiter (e.g., a comma), serving as the bridge to consolidate your structured prompt layers into a single continuous stream."
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
     }
   ],
   "links": [
@@ -673,6 +707,14 @@
       6,
       1,
       "INT"
+    ],
+    [
+      31,
+      10,
+      0,
+      21,
+      0,
+      "STRING"
     ]
   ],
   "groups": [],
@@ -681,8 +723,8 @@
     "ds": {
       "scale": 1.366588235294118,
       "offset": [
-        -115.43560606060629,
-        107.90960743801628
+        -110.31336088154292,
+        74.24913911845717
       ]
     },
     "frontendVersion": "1.42.11"
