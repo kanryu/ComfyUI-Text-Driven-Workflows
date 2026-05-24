@@ -87,14 +87,15 @@ Manages a single prompt fragment with precision multiplier weighting and master 
 * **Behavior:** Automatically combines `text` and `optional_text_in` with correct spacing. If the multiplier is not `1.0`, it cleanly wraps the final text into standard attention weight syntax: `(combined_text:multiplier)`. Built to handle unlinked optional pins flawlessly.
 
 ### 7. Text Line Prompt (Text-Driven)
-An innovative bi-directional editing node that allows intuitive control of extensive prompt assets or line-separated concepts within a single text area.
+
+An innovative editing node that allows intuitive control over long prompts entered with newline separations, enabling you to change attention weights or toggle skip on/off for each line with simple mouse clicks.
+
 * **Inputs:**
-  * `text` (String, Multiline): The main multi-line prompt database text area.
-  * `selected_line` (Combo, Dynamically Managed): Populated dynamically to track and choose lines.
-  * `multiplier` (Float, Default: `1.0`, Range: `0.0` - `10.0`): Real-time weight scaler for the selected line.
-  * `active` (Boolean, Default: `True`): Toggles active status for the selected line.
-  * `optional_text_in` (String, Force Input, Optional): An upstream text fragment to prepend.
-* **Behavior:** Selecting a line via the combobox lets you modify its multiplier or active state via UI controls, directly rewriting the target line's string layout in real-time. Deactivated lines are commented out with `//` on the fly and automatically skipped during backend execution to yield a clean string. It handles character LoRA escaped brackets `\( \)` properly while safely bypassing rows containing multiple unescaped brackets to prevent formatting damage. Trailing zeros are automatically dropped for clean syntax (e.g., `1.1`).
+  * `text` (String, Multiline): The main text area to enter your line-separated prompt fragments.
+  * `selected_line` (Combo Select): Selects a specific line from the multi-line text to edit.
+  * `multiplier` (Float, Default: `1.0`): Weight adjustment factor for the selected line.
+  * `active` (Boolean, Default: `True`): Toggles the output state for the selected line.
+* **Behavior:** Input parts or all of your prompts separated by newlines. By selecting a line via the combobox, you can adjust the weight multiplier or active status for that specific line. Deactivated lines are prepended with `//` and are automatically skipped during execution. The final output string from this node will have all newline characters removed at runtime.
 
 ### 8. Text Line Selector (Text-Driven)
 A studio-grade scenario switch designed to store massive direction and staging plans externally.
