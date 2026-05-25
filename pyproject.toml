@@ -1,7 +1,7 @@
 [project]
 name = "comfyui-text-driven-workflows"
 description = "A smart ComfyUI extension that simplifies text-driven workflows. Systematically organize, aggregate, and switch prompts or character settings with a single click, and batch process multiple staging plans simultaneously. Now features interactive line-by-line prompt tuning with real-time weight sync, and a color-coded token counter to prevent SD 1.5/SDXL chunk degradation."
-version = "1.0.0"
+version = "1.0.1"
 license = { file = "LICENSE" }
 dependencies = []
 
