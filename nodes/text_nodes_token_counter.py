@@ -12,7 +12,6 @@ class PromptTokenCounterTextDriven(io.ComfyNode):
             node_id="TextDrivenPromptTokenCounter",
             display_name="Prompt Token Counter (Text-Driven)",
             category="Text-Driven Workflows",
-            # FIXED: Refined description based on developer specifications
             description=(
                 "A prompt token counter node designed for Stable Diffusion 1.5 and SDXL. "
                 "Executing this node or running the project calculates an approximate token count "
@@ -27,7 +26,6 @@ class PromptTokenCounterTextDriven(io.ComfyNode):
             ),
             is_output_node=True,
             inputs=[
-                # Keeps the exact static V3 compliant connection link-pin
                 io.String.Input("prompt", force_input=True),
             ],
             hidden=[
@@ -38,7 +36,6 @@ class PromptTokenCounterTextDriven(io.ComfyNode):
 
     @classmethod
     def execute(cls, prompt) -> tuple:
-        # LOGIC REMAINS ABSOLUTELY UNTOUCHED
         unique_id = cls.hidden.unique_id
         
         if not prompt:
